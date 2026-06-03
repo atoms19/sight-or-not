@@ -1,6 +1,4 @@
-"use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Zap,
@@ -22,6 +20,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Atom } from "@/components/custom/atom";
 import { Stats } from "@/components/custom/stats";
+import { loginAction, loginWithGoogle } from "./actions";
 
 
 export default function LoginPage() {
@@ -110,7 +109,7 @@ export default function LoginPage() {
           </div>
 
           {/* Login form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form action={loginAction} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm text-neutral-300">
                 Email address
@@ -199,7 +198,9 @@ export default function LoginPage() {
           </div>
 
           {/* Social login */}
+
           <div className="grid grid-cols-2 gap-4">
+			 <form action={loginWithGoogle}>
             <Button
               type="button"
               variant="outline"
@@ -225,6 +226,7 @@ export default function LoginPage() {
               </svg>
               Google
             </Button>
+				</form>
             <Button
               type="button"
               variant="outline"
